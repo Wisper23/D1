@@ -98,3 +98,7 @@ header .btn-sign-up{
 header .action{
   margin-left: 49px;
 }
+
+header .btn-sign-up:hover{
+  background: #00CCCC;
+}
