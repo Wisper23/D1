@@ -499,7 +499,7 @@ header .btn-sign-up:hover {
   line-height: 1.54;
 }
 
-/* -----------Features: Đặc trưng -----------------*/
+/* -----------Features 1: Đặc trưng -----------------*/
 .features {
   margin-top: 135px;
   padding: 65px 0;
@@ -530,7 +530,7 @@ header .btn-sign-up:hover {
   width: 41%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  /* justify-content: center; */
 }
 
 .features .desc{
@@ -545,4 +545,23 @@ header .btn-sign-up:hover {
   width: 137px;
   height: 50px;
   background: var(--primary-color);
+}
+
+/* ------------- features 2 --------------------------*/
+
+.features-2nd .body{
+  flex-direction: row-reverse;
+}
+
+.features-2nd{
+  margin-top: 70px;
+}
+
+.features-2nd .content{
+  width: 49%;
+}
+
+.features-2nd .images img{
+  width: 470px;
+  height: 440px;
 }
