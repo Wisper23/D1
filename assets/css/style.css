@@ -589,12 +589,16 @@ header .btn-sign-up:hover {
   gap: 30px;
   display: flex;
   margin-top: 55px;
+  overflow: hidden;
 }
 
 .blog .item{
-  width: 33.33%;
+  width: calc(33.33% - 20px);
   background: #fff;
   border-radius: 16px;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+  /* transform: translateX(-0%); */
 }
 
 .blog .item:hover{
@@ -640,7 +644,7 @@ header .btn-sign-up:hover {
   bottom: 0;
   content: "";
   display: inline-block;
-  right: -10px;
+  right: -27px;
   height: 1px;
   background: #e2dfda;
   border-radius: 0.5px;
@@ -656,8 +660,29 @@ header .btn-sign-up:hover {
 
 .blog .item .btn{
   margin-top: 12px;
+  font-size: 1.4rem;
 }
 
 .blog .item .btn:hover{
   background: var(--primary-color);
+}
+
+.blog .dots{
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+  margin-top: 38px;
+}
+
+.blog .dot{
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #5f5b53;
+  cursor: pointer;
+}
+
+.blog .dot.active{
+  background: var(--primary-color);
+  cursor: default;
 }
