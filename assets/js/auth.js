@@ -27,7 +27,7 @@ loginForm.addEventListener("submit", function (e) {
     localStorage.setItem("userRole", "user");
     localStorage.setItem("userEmail", email);
     alert("Đăng nhập thành công!");
-    window.location.href = "/index.html";
+    window.location.href = "./../../index.html";
   } else {
     alert("Email hoặc mật khẩu không đúng!");
   }
