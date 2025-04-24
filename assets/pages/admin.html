@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- add favicon -->
+    <link
+      rel="apple-touch-icon"
+      sizes="57x57"
+      href="/assets/favicon/apple-icon-57x57.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="60x60"
+      href="/assets/favicon/apple-icon-60x60.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="72x72"
+      href="/assets/favicon/apple-icon-72x72.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="76x76"
+      href="/assets/favicon/apple-icon-76x76.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="114x114"
+      href="/assets/favicon/apple-icon-114x114.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="120x120"
+      href="/assets/favicon/apple-icon-120x120.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="144x144"
+      href="/assets/favicon/apple-icon-144x144.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="152x152"
+      href="/assets/favicon/apple-icon-152x152.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/assets/favicon/apple-icon-180x180.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="/assets/favicon/android-icon-192x192.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/assets/favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="96x96"
+      href="/assets/favicon/favicon-96x96.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/assets/favicon/favicon-16x16.png"
+    />
+    <link rel="manifest" href="/assets/favicon/manifest.json" />
+    <meta name="msapplication-TileColor" content="#ffffff" />
+    <meta
+      name="msapplication-TileImage"
+      content="/assets/favicon/ms-icon-144x144.png"
+    />
+    <meta name="theme-color" content="#ffffff" />
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="/assets/css/admin.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="admin-container">
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <div class="sidebar-header">
+          <img
+            src="/assets/img/uniky.png"
+            alt="Admin Logo"
+            class="admin-logo"
+          />
+          <h2>Admin Dashboard</h2>
+        </div>
+        <ul class="sidebar-menu">
+          <li class="active">
+            <a href="#dashboard"
+              ><i class="fas fa-tachometer-alt"></i> Dashboard</a
+            >
+          </li>
+          <li>
+            <a href="#courses"
+              ><i class="fas fa-book" id="courses"></i> Quản lý khóa học</a
+            >
+          </li>
+          <li>
+            <a href="#users"
+              ><i class="fas fa-users" id="users"></i> Quản lý người dùng</a
+            >
+          </li>
+          <li>
+            <a href="#reviews"
+              ><i class="fas fa-star" id="reviews"></i> Quản lý đánh giá</a
+            >
+          </li>
+          <li>
+            <a href="#settings"
+              ><i class="fas fa-cog" id="settings"></i> Cài đặt</a
+            >
+          </li>
+        </ul>
+        <div class="sidebar-footer">
+          <a href="#" id="logoutBtn"
+            ><i class="fas fa-sign-out-alt"></i> Đăng xuất</a
+          >
+        </div>
+      </div>
+
+      <!-- Main Content -->
+      <div class="main-content">
+        <!-- Top Navigation -->
+        <nav class="top-nav">
+          <div class="search-box">
+            <input type="text" placeholder="Tìm kiếm..." />
+            <button><i class="fas fa-search"></i></button>
+          </div>
+          <div class="admin-info">
+            <img src="/assets/img/adminav.jpg" alt="anh dai dien của Admin" />
+            <span>Admin</span>
+          </div>
+        </nav>
+
+        <!-- Dashboard Content -->
+        <div class="content" id="dashboardContent">
+          <h1>Dashboard</h1>
+
+          <!-- Thống kê -->
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-icon bg-blue">
+                <i class="fas fa-users"></i>
+              </div>
+              <div class="stat-info">
+                <h3>Tổng người dùng</h3>
+                <p id="totalUsers">0</p>
+              </div>
+            </div>
+
+            <div class="stat-card">
+              <div class="stat-icon bg-green">
+                <i class="fas fa-book"></i>
+              </div>
+              <div class="stat-info">
+                <h3>Tổng khóa học</h3>
+                <p id="totalCourses">0</p>
+              </div>
+            </div>
+
+            <div class="stat-card">
+              <div class="stat-icon bg-orange">
+                <i class="fas fa-star"></i>
+              </div>
+              <div class="stat-info">
+                <h3>Tổng đánh giá</h3>
+                <p id="totalReviews">0</p>
+              </div>
+            </div>
+
+            <div class="stat-card">
+              <div class="stat-icon bg-red">
+                <i class="fas fa-dollar-sign"></i>
+              </div>
+              <div class="stat-info">
+                <h3>Doanh thu</h3>
+                <p id="totalRevenue">0đ</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quản lý người dùng -->
+          <div class="user-management">
+            <h2>Quản lý người dùng</h2>
+            <table>
+              <thead>
+                <tr>
+                  <th>Tên</th>
+                  <th>Email</th>
+                  <th>Khóa học đã mua</th>
+                  <th>Thời gian mua</th>
+                  <th>Giá</th>
+                </tr>
+              </thead>
+              <tbody id="userTable">
+                <!-- Dữ liệu sẽ được thêm bằng JavaScript -->
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Quản lý khóa học -->
+          <div class="course-management">
+            <h2>Quản lý khóa học</h2>
+            <table>
+              <thead>
+                <tr>
+                  <th>Tên khóa học</th>
+                  <th>Giá</th>
+                  <th>Giảng viên</th>
+                  <th>Hành động</th>
+                </tr>
+              </thead>
+              <tbody id="courseTable">
+                <!-- Dữ liệu sẽ được thêm bằng JavaScript -->
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Hoạt động gần đây -->
+          <div class="recent-activity">
+            <h2>Hoạt động gần đây</h2>
+            <table>
+              <thead>
+                <tr>
+                  <th>Thời gian</th>
+                  <th>Người dùng</th>
+                  <th>Hành động</th>
+                  <th>Chi tiết</th>
+                </tr>
+              </thead>
+              <tbody id="activityTable">
+                <!-- Dữ liệu sẽ được thêm bằng JavaScript -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="/assets/js/admin.js"></script>
+  </body>
+</html>

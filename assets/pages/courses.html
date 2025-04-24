@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- add favicon -->
+    <link
+      rel="apple-touch-icon"
+      sizes="57x57"
+      href="/assets/favicon/apple-icon-57x57.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="60x60"
+      href="/assets/favicon/apple-icon-60x60.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="72x72"
+      href="/assets/favicon/apple-icon-72x72.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="76x76"
+      href="/assets/favicon/apple-icon-76x76.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="114x114"
+      href="/assets/favicon/apple-icon-114x114.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="120x120"
+      href="/assets/favicon/apple-icon-120x120.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="144x144"
+      href="/assets/favicon/apple-icon-144x144.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="152x152"
+      href="/assets/favicon/apple-icon-152x152.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/assets/favicon/apple-icon-180x180.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="/assets/favicon/android-icon-192x192.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/assets/favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="96x96"
+      href="/assets/favicon/favicon-96x96.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/assets/favicon/favicon-16x16.png"
+    />
+    <link rel="manifest" href="/assets/favicon/manifest.json" />
+    <meta name="msapplication-TileColor" content="#ffffff" />
+    <meta
+      name="msapplication-TileImage"
+      content="/assets/favicon/ms-icon-144x144.png"
+    />
+    <meta name="theme-color" content="#ffffff" />
+    <!-- reset css -->
+    <link rel="stylesheet" href="/assets/css/reset.css" />
+    <!-- font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&family=Sen:wght@400..800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+      integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- css -->
+    <link rel="stylesheet" href="../css/courses.css" />
+
+    <title>Ban khoa hoc</title>
+  </head>
+  <body>
+    <!-- header -->
+    <header class="header fixed">
+      <div class="main-content">
+        <!-- .body>img.logo+nav.nav>ul>li*4>a -->
+        <div class="body">
+          <!-- logo -->
+          <img src="../img/uniky.png" alt="Net" class="logo" />
+          <!-- nav -->
+          <nav class="nav">
+            <ul>
+              <li class="">
+                <a href="/index.html">Home</a>
+              </li>
+              <li class="active">
+                <a href="./courses.html">Courses</a>
+              </li>
+              <li>
+                <a href="./pricing.html">Pricing</a>
+              </li>
+              <li>
+                <a href="./reviews.html">Reviews</a>
+              </li>
+            </ul>
+          </nav>
+          <div class="search-bar">
+            <input
+              type="text"
+              id="searchInput"
+              placeholder="Tìm kiếm khóa học..."
+              class="search-input"
+            />
+            <i class="fa-solid fa-magnifying-glass" id="searchIcon"></i>
+          </div>
+          <!-- btn action -->
+          <div class="action">
+            <!-- Hiển thị nút "Đăng nhập" nếu chưa đăng nhập -->
+            <a href="../pages/auth.html" class="btn btn-sign-up" id="loginBtn"
+              >Sign Up</a
+            >
+            <!-- Hiển thị nút "Đăng xuất" nếu đã đăng nhập -->
+            <button class="btn btn-logout hidden" id="logoutBtn">
+              Log Out
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="main-content hero-container">
+        <div class="hero-content">
+          <h1>Học mọi lúc, mọi nơi</h1>
+          <p>Nắm vững kỹ năng thực tế chỉ sau 30 ngày học tập.</p>
+          <a href="#courses" class="btn cta">Xem khóa học ngay</a>
+        </div>
+        <div class="hero-image">
+          <img src="../img/hoc-online.jpg" alt="Học viên đang học" />
+        </div>
+      </div>
+    </section>
+
+    <!-- courses section -->
+    <section id="courses" class="courses">
+      <div class="main-content">
+        <h2>Khám phá những khóa học phù hợp với bạn</h2>
+        <div class="courses-grid">
+          <!-- courses 1 -->
+          <div class="courses-card">
+            <img
+              class="courses-img"
+              src="../img/front-end.png"
+              alt="Lap trinh front end"
+            />
+            <div class="courses-info">
+              <h3>Lap trinh Frontend</h3>
+              <p class="name-teacher">Giang vien: Nguyen Van A</p>
+              <div class="rating">
+                <span class="stars">★★★★★</span>
+                <span class="reviews">(128 đánh giá)</span>
+              </div>
+              <div class="price">
+                <span class="original-price">3.000.000đ</span>
+                <span class="discounted-price" data-price="1800000"
+                  >1.800.000đ</span
+                >
+                <span class="discount-tag">-40%</span>
+              </div>
+              <a href="./checkout.html" class="btn enroll">Đăng ký ngay</a>
+              <button
+                class="btn review-btn"
+                data-course-name="Lập trình Frontend"
+              >
+                Đánh giá khóa học
+              </button>
+            </div>
+          </div>
+
+          <!-- courses 2 -->
+          <div class="courses-card">
+            <img
+              class="courses-img"
+              src="../img/marketing.jpg"
+              alt="Marketing online"
+            />
+            <div class="courses-info">
+              <h3>Marketing Online</h3>
+              <p class="instructor">Giảng viên: Trần Thị B</p>
+              <div class="rating">
+                <span class="stars">★★★★★</span>
+                <span class="reviews">(95 đánh giá)</span>
+              </div>
+              <div class="price">
+                <span class="original-price">2.500.000đ</span>
+                <span class="discounted-price" data-price="1500000"
+                  >1.500.000đ</span
+                >
+                <span class="discount-tag">HOT</span>
+              </div>
+              <a href="./checkout.html" class="btn enroll">Đăng ký ngay</a>
+              <button
+                class="btn review-btn"
+                data-course-name="Marketing Online"
+              >
+                Đánh giá khóa học
+              </button>
+            </div>
+          </div>
+
+          <!-- courses 3 -->
+          <div class="courses-card">
+            <img
+              class="courses-img"
+              src="../img/english.jpg"
+              alt="Tieng anh giao tiep"
+            />
+            <div class="courses-info">
+              <h3>Tiếng Anh giao tiếp</h3>
+              <p class="instructor">Giảng viên: John Smith</p>
+              <div class="rating">
+                <span class="stars">★★★★☆</span>
+                <span class="reviews">(76 đánh giá)</span>
+              </div>
+              <div class="price">
+                <span class="discounted-price" data-price="1200000"
+                  >1.200.000đ</span
+                >
+              </div>
+              <a href="./checkout.html" class="btn enroll">Đăng ký ngay</a>
+              <button
+                class="btn review-btn"
+                data-course-name="Tiếng Anh giao tiếp"
+              >
+                Đánh giá khóa học
+              </button>
+            </div>
+          </div>
+
+          <!-- courses 4 -->
+          <div class="courses-card">
+            <img class="courses-img" src="../img/ux.png" alt="Thiet ke UX/UI" />
+            <div class="courses-info">
+              <h3>Thiết kế UX/UI</h3>
+              <p class="instructor">Giảng viên: Lê Văn C</p>
+              <div class="rating">
+                <span class="stars">★★★★★</span>
+                <span class="reviews">(210 đánh giá)</span>
+              </div>
+              <div class="price">
+                <span class="original-price">3.200.000đ</span>
+                <span class="discounted-price" data-price="2400000"
+                  >2.400.000đ</span
+                >
+              </div>
+              <a href="./checkout.html" class="btn enroll">Đăng ký ngay</a>
+              <button class="btn review-btn" data-course-name="Thiết kế UX/UI">
+                Đánh giá khóa học
+              </button>
+            </div>
+          </div>
+
+          <!-- courses 5 -->
+          <div class="courses-card">
+            <img
+              class="courses-img"
+              src="/assets/img/khoahoc.jpg"
+              alt="Khoa học dữ liệu"
+            />
+            <div class="courses-info">
+              <h3>Khoa học dữ liệu</h3>
+              <p class="instructor">Giảng viên: Phạm Minh D</p>
+              <div class="rating">
+                <span class="stars">★★★★★</span>
+                <span class="reviews">(150 đánh giá)</span>
+              </div>
+              <div class="price">
+                <span class="original-price">4.000.000đ</span>
+                <span class="discounted-price" data-price="2800000"
+                  >2.800.000đ</span
+                >
+                <span class="discount-tag">-30%</span>
+              </div>
+              <a href="./checkout.html" class="btn enroll">Đăng ký ngay</a>
+              <button
+                class="btn review-btn"
+                data-course-name="Khoa hoc du lieu"
+              >
+                Đánh giá khóa học
+              </button>
+            </div>
+          </div>
+
+          <!-- courses 6 -->
+          <div class="courses-card">
+            <img
+              class="courses-img"
+              src="/assets/img/python.jpg"
+              alt="Lập trình Python"
+            />
+            <div class="courses-info">
+              <h3>Lập trình Python</h3>
+              <p class="instructor">Giảng viên: Nguyễn Thị E</p>
+              <div class="rating">
+                <span class="stars">★★★★☆</span>
+                <span class="reviews">(120 đánh giá)</span>
+              </div>
+              <div class="price">
+                <span class="original-price">3.500.000đ</span>
+                <span class="discounted-price" data-price="2100000"
+                  >2.100.000đ</span
+                >
+                <span class="discount-tag">-40%</span>
+              </div>
+              <a href="./checkout.html" class="btn enroll">Đăng ký ngay</a>
+              <button
+                class="btn review-btn"
+                data-course-name="Lập trình Python"
+              >
+                Đánh giá khóa học
+              </button>
+            </div>
+          </div>
+
+          <!-- courses 7 -->
+          <div class="courses-card">
+            <img
+              class="courses-img"
+              src="/assets/img/ai.jpg"
+              alt="Trí tuệ nhân tạo"
+            />
+            <div class="courses-info">
+              <h3>Trí tuệ nhân tạo</h3>
+              <p class="instructor">Giảng viên: Lê Văn F</p>
+              <div class="rating">
+                <span class="stars">★★★★★</span>
+                <span class="reviews">(200 đánh giá)</span>
+              </div>
+              <div class="price">
+                <span class="original-price">5.000.000đ</span>
+                <span class="discounted-price" data-price="3500000"
+                  >3.500.000đ</span
+                >
+                <span class="discount-tag">HOT</span>
+              </div>
+              <a href="./checkout.html" class="btn enroll">Đăng ký ngay</a>
+              <button
+                class="btn review-btn"
+                data-course-name="Trí tuệ nhân tao"
+              >
+                Đánh giá khóa học
+              </button>
+            </div>
+          </div>
+
+          <!-- courses 8 -->
+          <div class="courses-card">
+            <img
+              class="courses-img"
+              src="/assets/img/anninh.jpg"
+              alt="An ninh mạng"
+            />
+            <div class="courses-info">
+              <h3>An ninh mạng</h3>
+              <p class="instructor">Giảng viên: Trần Quốc G</p>
+              <div class="rating">
+                <span class="stars">★★★★☆</span>
+                <span class="reviews">(85 đánh giá)</span>
+              </div>
+              <div class="price">
+                <span class="original-price">4.500.000đ</span>
+                <span class="discounted-price" data-price="3000000"
+                  >3.000.000đ</span
+                >
+                <span class="discount-tag">-33%</span>
+              </div>
+              <a href="./checkout.html" class="btn enroll">Đăng ký ngay</a>
+              <button class="btn review-btn" data-course-name="An ninh mang">
+                Đánh giá khóa học
+              </button>
+            </div>
+          </div>
+
+          <!-- 9 -->
+          <div class="courses-card">
+            <img
+              class="courses-img"
+              src="/assets/img/basic.jpg"
+              alt="Basic Web Design"
+            />
+            <div class="courses-info">
+              <h3>Basic Web Design</h3>
+              <p class="instructor">Giảng viên: Nguyễn Văn H</p>
+              <div class="rating">
+                <span class="stars">★★★★☆</span>
+                <span class="reviews">(90 đánh giá)</span>
+              </div>
+              <div class="price">
+                <span class="original-price">2.000.000đ</span>
+                <span class="discounted-price" data-price="1200000"
+                  >1.200.000đ</span
+                >
+                <span class="discount-tag">-40%</span>
+              </div>
+              <a href="./checkout.html" class="btn enroll">Đăng ký ngay</a>
+              <button
+                class="btn review-btn"
+                data-course-name="Basic Web Design"
+              >
+                Đánh giá khóa học
+              </button>
+            </div>
+          </div>
+
+          <!-- 10 -->
+          <div class="courses-card">
+            <img
+              class="courses-img"
+              src="/assets/img/design.png"
+              alt="Web App Design"
+            />
+            <div class="courses-info">
+              <h3>Web App Design</h3>
+              <p class="instructor">Giảng viên: Trần Thị I</p>
+              <div class="rating">
+                <span class="stars">★★★★★</span>
+                <span class="reviews">(110 đánh giá)</span>
+              </div>
+              <div class="price">
+                <span class="original-price">3.500.000đ</span>
+                <span class="discounted-price" data-price="2500000"
+                  >2.500.000đ</span
+                >
+                <span class="discount-tag">HOT</span>
+              </div>
+              <a href="./checkout.html" class="btn enroll">Đăng ký ngay</a>
+              <button class="btn review-btn" data-course-name="Web App Design">
+                Đánh giá khóa học
+              </button>
+            </div>
+          </div>
+
+          <!-- 11 -->
+          <div class="courses-card">
+            <img
+              class="courses-img"
+              src="/assets/img/machine.png"
+              alt="Machine Learning"
+            />
+            <div class="courses-info">
+              <h3>Machine Learning</h3>
+              <p class="instructor">Giảng viên: Lê Văn J</p>
+              <div class="rating">
+                <span class="stars">★★★★★</span>
+                <span class="reviews">(150 đánh giá)</span>
+              </div>
+              <div class="price">
+                <span class="original-price">5.000.000đ</span>
+                <span class="discounted-price" data-price="3800000"
+                  >3.800.000đ</span
+                >
+                <span class="discount-tag">-24%</span>
+              </div>
+              <a href="./checkout.html" class="btn enroll">Đăng ký ngay</a>
+              <button
+                class="btn review-btn"
+                data-course-name="Machine Learning"
+              >
+                Đánh giá khóa học
+              </button>
+            </div>
+          </div>
+
+          <!-- 12 -->
+          <div class="courses-card">
+            <img
+              class="courses-img"
+              src="/assets/img/cyber.jpg"
+              alt="Cybersecurity Fundamentals"
+            />
+            <div class="courses-info">
+              <h3>Cybersecurity Fundamentals</h3>
+              <p class="instructor">Giảng viên: Phạm Minh K</p>
+              <div class="rating">
+                <span class="stars">★★★★☆</span>
+                <span class="reviews">(120 đánh giá)</span>
+              </div>
+              <div class="price">
+                <span class="original-price">4.000.000đ</span>
+                <span class="discounted-price" data-price="2800000"
+                  >2.800.000đ</span
+                >
+                <span class="discount-tag">-30%</span>
+              </div>
+              <a href="./checkout.html" class="btn enroll">Đăng ký ngay</a>
+              <button
+                class="btn review-btn"
+                data-course-name="Cybersecurity Fundamentals"
+              >
+                Đánh giá khóa học
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits">
+      <div class="main-content">
+        <h2 class="section-title">Tại sao chọn chúng tôi?</h2>
+        <div class="benefits-grid">
+          <div class="benefit-item">
+            <div class="icon-wrapper">
+              <i class="fas fa-laptop"></i>
+            </div>
+            <h3 class="benefit-title">Học trực tuyến mọi lúc</h3>
+            <p class="benefit-desc">Truy cập bài giảng 24/7 từ bất kỳ đâu.</p>
+          </div>
+          <div class="benefit-item">
+            <div class="icon-wrapper">
+              <i class="fas fa-headset"></i>
+            </div>
+            <h3 class="benefit-title">Hỗ trợ 24/7</h3>
+            <p class="benefit-desc">
+              Đội ngũ giảng viên luôn sẵn sàng giải đáp.
+            </p>
+          </div>
+          <div class="benefit-item">
+            <div class="icon-wrapper">
+              <i class="fas fa-certificate"></i>
+            </div>
+            <h3 class="benefit-title">Chứng nhận hoàn thành</h3>
+            <p class="benefit-desc">Nhận chứng chỉ có giá trị sau khóa học.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="reviews" class="reviews-section">
+      <div class="main-content">
+        <h2>Đánh giá từ học viên</h2>
+        <div id="reviewsList" class="reviews-list">
+          <!-- Các đánh giá sẽ được thêm vào đây -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials">
+      <div class="main-content">
+        <h2 class="section-title">Học viên nói gì về chúng tôi?</h2>
+        <div class="testimonial-grid">
+          <div class="testimonial-card">
+            <img
+              src="../img/ava1.jpg"
+              alt="Nguyễn Văn A"
+              class="testimonial-avatar"
+            />
+            <p class="testimonial-quote">
+              "Khóa học giúp tôi tự tin làm việc sau 2 tháng!"
+            </p>
+            <div class="student-info">
+              <h4 class="student-name">Nguyễn Văn A</h4>
+              <span class="student-role">Học viên Lập trình Frontend</span>
+            </div>
+          </div>
+          <div class="testimonial-card">
+            <img
+              src="../img/ava2.jpg"
+              alt="Trần Thị B"
+              class="testimonial-avatar"
+            />
+            <p class="testimonial-quote">
+              "Giảng viên nhiệt tình, nội dung dễ hiểu."
+            </p>
+            <div class="student-info">
+              <h4 class="student-name">Trần Thị B</h4>
+              <span class="student-role">Học viên Marketing Online</span>
+            </div>
+          </div>
+          <div class="testimonial-card">
+            <img
+              src="../img/avarta.jpg"
+              alt="Lê Văn C"
+              class="testimonial-avatar"
+            />
+            <p class="testimonial-quote">
+              "Cam kết chất lượng đúng như quảng cáo."
+            </p>
+            <div class="student-info">
+              <h4 class="student-name">Lê Văn C</h4>
+              <span class="student-role">Học viên Thiết kế UX/UI</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+      <div class="main-content">
+        <h2>Bắt đầu hành trình học tập của bạn ngay hôm nay!</h2>
+        <a href="./checkout.html" class="btn cta">Đăng ký tư vấn miễn phí</a>
+      </div>
+    </section>
+
+    <!-- footer -->
+    <footer class="footer">
+      <div class="main-content">
+        <div class="row">
+          <!-- column 1 -->
+          <div class="column">
+            <img src="../img/logow.svg" alt="Lesson." class="logo" />
+            <p class="desc">
+              Bạn cần trợ giúp cho sự nghiệp mơ ước của mình? Hãy tin chúng tôi.
+              Với các bài học, việc học trở nên dễ dàng hơn nhiều với sự hỗ trợ
+              của chúng tôi.
+            </p>
+            <div class="socials">
+              <a href="">
+                <img src="/assets/icon/twitter.svg" alt="" class="icon" />
+              </a>
+              <a href="">
+                <img src="/assets/icon/f.svg" alt="" class="icon" />
+              </a>
+              <a href="">
+                <img src="/assets/icon/linked_in.svg" alt="" class="icon" />
+              </a>
+              <a href="">
+                <img src="/assets/icon/Instagram.svg" alt="" class="icon" />
+              </a>
+            </div>
+          </div>
+
+          <!-- column 2 -->
+          <div class="column">
+            <h3 class="title">Company</h3>
+            <ul class="list">
+              <li>
+                <a href="#!">About Us</a>
+              </li>
+              <li>
+                <a href="#!">Features</a>
+              </li>
+              <li>
+                <a href="#!">Our Pricing</a>
+              </li>
+              <li>
+                <a href="#!">Latest News</a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- column 3 -->
+          <div class="column">
+            <h3 class="title">Support</h3>
+            <ul class="list">
+              <li>
+                <a href="#!">FAQ’s</a>
+              </li>
+              <li>
+                <a href="#!">Terms & Conditions</a>
+              </li>
+              <li>
+                <a href="#!">Privacy Policy</a>
+              </li>
+              <li>
+                <a href="#!">Contact Us</a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- column 4 -->
+          <div class="column">
+            <h3 class="title">Address</h3>
+            <ul class="list">
+              <li>
+                <a href="#!"
+                  ><strong>Location:</strong> 27 Division St, New York, NY
+                  10002, USA</a
+                >
+              </li>
+              <li>
+                <a href="#!"><strong>Email:</strong> email@gmail.com</a>
+              </li>
+              <li>
+                <a href="#!"><strong>Phone:</strong> + 000 1234 567 890</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="copyright">
+          <p>Copyright ©2025 webdesign.vdn All rights reserved</p>
+        </div>
+      </div>
+    </footer>
+
+    <div class="review-modal hidden" id="reviewModal">
+      <div class="modal-content">
+        <span class="close-btn" id="closeModal">&times;</span>
+        <h3>Đánh giá khóa học</h3>
+        <label for="starInput">Nhập số sao (1-5):</label>
+        <input type="number" id="starInput" min="1" max="5" />
+        <label for="commentInput">Viết bình luận:</label>
+        <textarea
+          id="commentInput"
+          rows="4"
+          placeholder="Nhập bình luận của bạn..."
+        ></textarea>
+        <button id="submitReview" class="btn">Gửi đánh giá</button>
+      </div>
+    </div>
+  </body>
+  <script src="/assets/js/courses.js"></script>
+</html>

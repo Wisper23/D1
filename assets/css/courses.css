@@ -1,0 +1,579 @@
+/* Reset và font */
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  --font-heading: "Sen", sans-serif;
+  --primary-color: #ffb900;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+/* khoi phuc lai co chu mac dinh theo rem */
+body {
+  font-size: 1.6rem;
+  font-family: "Poppins", sans-serif;
+}
+
+.logo {
+  max-width: 10rem;
+}
+
+/* --------------chung ------------------*/
+a {
+  text-decoration: none;
+}
+
+ul li {
+  list-style: none;
+}
+
+.heading-lv2 {
+  color: #171100;
+  font-family: var(--font-heading);
+  font-size: 3.8rem;
+  font-weight: 700;
+  line-height: 1.27;
+  letter-spacing: -0.76px;
+}
+
+.main-content {
+  width: 1170px;
+  max-width: calc(100% - 48px);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.btn {
+  display: inline-block;
+  min-width: 118px;
+  padding: 0 16px;
+  color: #fff;
+  text-align: center;
+  font-size: 1.6rem;
+  font-weight: 600;
+  border-radius: 999px;
+  background: #171100;
+  line-height: 50px;
+}
+
+.btn:hover {
+  opacity: 0.9;
+  cursor: pointer;
+}
+
+.line-clamp {
+  display: -webkit-box;
+  -webkit-line-clamp: var(--line-clamp, 1);
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp.line-2 {
+  --line-clamp: 2;
+}
+
+.break-all {
+  word-break: break-all;
+}
+
+/* ------------------search -------------------------*/
+
+.search-input {
+  border: none; /* Loại bỏ viền */
+  border-bottom: 2px solid #ccc; /* Thêm dòng kẻ dưới */
+  outline: none; /* Loại bỏ viền khi focus */
+  padding: 8px;
+  font-size: 16px;
+  transition: border-color 0.3s ease; /* Hiệu ứng khi focus */
+}
+
+.search-input:focus {
+  border-bottom: 2px solid #007bff; /* Đổi màu dòng kẻ khi focus */
+}
+
+.search-icon {
+  font-size: 20px;
+  color: #fff;
+  background-color: #007bff;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.search-icon:hover {
+  background-color: #0056b3;
+}
+
+/*------------- header -----------------*/
+header {
+  background: #fffcf4;
+}
+
+.header.fixed {
+  z-index: 1;
+  position: sticky;
+  top: -28px;
+}
+
+.header .body {
+  display: flex;
+  align-items: center;
+  padding: 36px 0 8px;
+}
+
+.nav {
+  margin-left: auto;
+}
+
+.nav ul {
+  display: flex;
+}
+
+.nav a {
+  position: relative;
+  color: #5f5b53;
+  font-size: 1.6rem;
+  padding: 8px 21px;
+}
+
+.nav li.active a,
+.nav a:hover {
+  color: #171100;
+  /* font-weight: 600; */
+  text-shadow: 1px 0 0 currentColor;
+}
+
+.nav li.active a::after {
+  position: absolute;
+  display: block;
+  bottom: 6px;
+  left: 20px;
+  content: "";
+  width: 12px;
+  height: 2px;
+  border-radius: 1px;
+  background: #171100;
+}
+
+header .btn-sign-up {
+  min-width: 144px;
+}
+
+header .action {
+  margin-left: 49px;
+}
+
+header .btn-sign-up:hover {
+  background: #00cccc;
+}
+
+/* --------------------------hero ------------------------*/
+/* Hero Section */
+.hero {
+  padding: 60px 0;
+  background: linear-gradient(to right, #f8f8f8, #fff);
+}
+.hero-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+}
+.hero-content h1 {
+  font-size: 3.6rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #171100;
+}
+.hero-content p {
+  font-size: 1.8rem;
+  color: #5f5b53;
+  margin-bottom: 30px;
+}
+.hero-image img {
+  max-width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Courses Section */
+.courses {
+  padding: 60px 0;
+  background: #fff;
+}
+
+.courses-img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.courses h2 {
+  font-size: 3rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 40px;
+}
+.courses-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+.courses-card {
+  background: #fafafa;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  border: 1px solid #ddd;
+}
+
+.courses-info {
+  padding: 20px;
+}
+.courses-info h3 {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.courses-info .instructor {
+  margin-bottom: 10px;
+  color: #777;
+}
+.courses-info .rating {
+  margin-bottom: 10px;
+  color: #f39c12;
+  font-size: 1.4rem;
+}
+.courses-info .price {
+  margin-bottom: 15px;
+}
+.original-price {
+  text-decoration: line-through;
+  color: #999;
+}
+.discounted-price {
+  color: #e74c3c;
+  font-weight: bold;
+  margin-left: 8px;
+}
+
+/* CTA Section */
+.cta-section {
+  padding: 60px 0;
+  background: #ffb900;
+  text-align: center;
+  color: #fff;
+}
+.cta-section h2 {
+  font-size: 2.8rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+/* Ẩn phần tử khi cần */
+.hidden {
+  display: none;
+}
+/* benefits  */
+/* Benefits Section */
+.benefits {
+  padding: 60px 0;
+  background: #f9f9f9;
+  text-align: center;
+}
+
+.section-title {
+  font-size: 2.8rem;
+  font-weight: bold;
+  margin-bottom: 40px;
+  color: #333;
+}
+
+.benefits-grid {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+}
+
+.benefit-item {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  max-width: 300px;
+}
+
+.icon-wrapper {
+  font-size: 3rem;
+  color: #ffb900;
+  margin-bottom: 15px;
+}
+
+.benefit-title {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.benefit-desc {
+  font-size: 1.4rem;
+  color: #666;
+}
+
+/* Testimonials Section */
+.testimonials {
+  padding: 60px 0;
+  background: #fff;
+  text-align: center;
+}
+
+.testimonial-grid {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+}
+
+.testimonial-card {
+  background: #f9f9f9;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  max-width: 300px;
+  text-align: center;
+}
+
+.testimonial-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin-bottom: 15px;
+  object-fit: cover;
+}
+
+.testimonial-quote {
+  font-size: 1.6rem;
+  font-style: italic;
+  color: #555;
+  margin-bottom: 15px;
+}
+
+.student-name {
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.student-role {
+  font-size: 1.4rem;
+  color: #777;
+}
+
+/*-------------- footer -------------------*/
+.footer {
+  background: #2e2100;
+  padding: 96px 135px 0;
+}
+
+.footer .row {
+  display: flex;
+  padding-bottom: 38px;
+  border-bottom: 1px solid #59554b;
+}
+
+.footer .row .column {
+  width: 21.6%;
+}
+
+.footer .row .column:first-child {
+  width: 35%;
+}
+
+.footer .desc {
+  margin-top: 18px;
+  max-width: 267px;
+  color: #bfbcb2;
+  font-size: 1.4rem;
+  line-height: 1.86;
+}
+
+.footer .socials {
+  display: flex;
+  gap: 18px;
+  margin-top: 18px;
+}
+
+.footer .title {
+  padding-bottom: 14px;
+  padding-right: 48px;
+  display: inline-block;
+  border-bottom: 1px solid #59554b;
+  color: #fff;
+  font-size: 1.6rem;
+  font-weight: 600;
+  line-height: 1.75;
+}
+
+.footer .list {
+  margin-top: 28px;
+}
+
+.footer .list a {
+  display: inline-block;
+  margin-bottom: 12px;
+  color: #bfbcb2;
+  font-size: 1.4rem;
+  line-height: 1.86;
+}
+
+.footer .list li:last-child a {
+  margin-bottom: 0;
+}
+
+.footer .list strong {
+  color: #fff;
+  font-size: 1.4rem;
+  font-weight: 600;
+  line-height: 1.86;
+}
+
+.footer .copyright {
+  padding: 28px 0;
+  color: #807d74;
+  text-align: center;
+  font-size: 1.4rem;
+  line-height: 1.86;
+}
+
+/*----------------- model: đánh giá ------------------*/
+.review-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.review-modal.hidden {
+  display: none;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 20px 30px;
+  border-radius: 10px;
+  text-align: center;
+  position: relative;
+  width: 300px;
+}
+
+.modal-content input {
+  padding: 8px;
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  cursor: pointer;
+  font-size: 24px;
+}
+
+.review-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.review-modal.hidden {
+  display: none;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 20px 30px;
+  border-radius: 10px;
+  text-align: center;
+  position: relative;
+  width: 400px;
+}
+
+.modal-content input,
+.modal-content textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  cursor: pointer;
+  font-size: 24px;
+}
+
+.reviews-section {
+  padding: 40px 20px;
+  background-color: #f9f9f9;
+  text-align: center;
+}
+
+.reviews-section h2 {
+  font-size: 2.4rem;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.reviews-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}
+
+.review-item {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 100%;
+  max-width: 600px;
+  text-align: left;
+}
+
+.review-item .stars {
+  color: #ffc107;
+  font-size: 1.4rem;
+}
+
+.review-item .review-comment {
+  margin-top: 10px;
+  font-size: 1.6rem;
+  color: #555;
+}
