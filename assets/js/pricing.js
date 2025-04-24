@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
       if (!isLoggedIn) {
         // Nếu chưa đăng nhập, chuyển hướng đến trang đăng nhập
         alert("Bạn cần đăng nhập để chọn gói!");
-        window.location.href = "/assets/pages/auth.html";
+        window.location.href = "../pages/auth.html";
       } else {
         // Nếu đã đăng nhập, chuyển hướng đến trang checkout
         const selectedPlan = this.getAttribute("data-plan");
@@ -35,7 +35,7 @@ document.querySelectorAll(".choose-plan").forEach((button) => {
     localStorage.setItem("selectedCourse", courseName);
     localStorage.setItem("selectedCoursePrice", coursePrice);
 
-    window.location.href = "/assets/pages/checkout.html";
+    window.location.href = "../pages/checkout.html";
   });
 });
 

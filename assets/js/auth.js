@@ -12,7 +12,7 @@ loginForm.addEventListener("submit", function (e) {
     localStorage.setItem("userRole", "admin");
     localStorage.setItem("userEmail", email);
     alert("Đăng nhập admin thành công!");
-    window.location.href = "/assets/pages/admin.html";
+    window.location.href = "../pages/admin.html";
     return;
   }
 

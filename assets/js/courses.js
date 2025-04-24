@@ -198,7 +198,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
       if (!isLoggedIn) {
         alert("Bạn cần đăng nhập để mua khóa học!");
-        window.location.href = "/assets/pages/auth.html"; // Chuyển hướng đến trang đăng nhập
+        window.location.href = "../pages/auth.html"; // Chuyển hướng đến trang đăng nhập
       } else {
         const courseCard = this.closest(".courses-card");
         const courseName = courseCard.querySelector("h3").textContent.trim();
@@ -211,7 +211,7 @@ document.addEventListener("DOMContentLoaded", function () {
         localStorage.setItem("selectedCourse", courseName);
         localStorage.setItem("selectedCoursePrice", amountText);
         alert(`Bạn đã chọn mua khóa học: ${courseName}`);
-        window.location.href = "/assets/pages/checkout.html"; // Chuyển hướng đến trang thanh toán
+        window.location.href = "../pages/checkout.html"; // Chuyển hướng đến trang thanh toán
       }
     });
   });

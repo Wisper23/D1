@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
     localStorage.removeItem("userEmail");
 
     // Chuyển hướng về trang đăng nhập
-    window.location.href = "./assets/pages/auth.html";
+    window.location.href = "../pages/auth.html";
   });
 });
 

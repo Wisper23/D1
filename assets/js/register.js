@@ -34,5 +34,5 @@ registerForm.addEventListener("submit", function (e) {
   localStorage.setItem("users", JSON.stringify(users));
 
   alert("Đăng ký thành công! Vui lòng đăng nhập.");
-  window.location.href = "auth.html"; // Chuyển đến trang đăng nhập
+  window.location.href = "../pages/auth.html"; // Chuyển đến trang đăng nhập
 });

@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Kiểm tra trạng thái đăng nhập
   if (localStorage.getItem("loggedIn") !== "true") {
     alert("Vui lòng đăng nhập để thanh toán");
-    window.location.href = "auth.html"; // Chuyển đến trang đăng nhập nếu chưa login
+    window.location.href = "../pages/auth.html"; // Chuyển đến trang đăng nhập nếu chưa login
     return;
   }
 
@@ -13,12 +13,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Xử lý khi nhấn nút thanh toán qua MoMo
   document.getElementById("payWithMoMo").addEventListener("click", () => {
-    showQRModal("MoMo", "/assets/img/qrmomo.jpg");
+    showQRModal("MoMo", "../img/qrmomo.jpg");
   });
 
   // Xử lý khi nhấn nút thanh toán qua VNPay
   document.getElementById("payWithVNPay").addEventListener("click", () => {
-    showQRModal("VNPay", "/assets/img/qrmomo.jpg");
+    showQRModal("VNPay", "../img/qrmomo.jpg");
   });
 
   // Đóng modal QR khi nhấn nút x

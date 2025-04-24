@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (!isLoggedIn || userRole !== "admin") {
       // Chuyển hướng nếu không có quyền truy cập
       alert("Bạn không có quyền truy cập trang admin.");
-      window.location.href = "/assets/pages/auth.html";
+      window.location.href = "../pages/auth.html";
       return;
     }
 
@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
   document.getElementById("logoutBtn").addEventListener("click", function () {
     localStorage.removeItem("adminLoggedIn");
     alert("Bạn đã đăng xuất!");
-    window.location.href = "/assets/pages/auth.html";
+    window.location.href = "../pages/auth.html";
   });
 
   // Thêm sự kiện chuyển tab menu
