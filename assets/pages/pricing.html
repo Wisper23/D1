@@ -4,23 +4,82 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- add favicon -->
-    <link rel="apple-touch-icon" sizes="57x57" href="../favicon/apple-icon-57x57.png">
-    <link rel="apple-touch-icon" sizes="60x60" href="../favicon/apple-icon-60x60.png">
-    <link rel="apple-touch-icon" sizes="72x72" href="../favicon/apple-icon-72x72.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="../favicon/apple-icon-76x76.png">
-    <link rel="apple-touch-icon" sizes="114x114" href="../favicon/apple-icon-114x114.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="../favicon/apple-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="144x144" href="../favicon/apple-icon-144x144.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="../favicon/apple-icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-icon-180x180.png">
-    <link rel="icon" type="image/png" sizes="192x192"  href="../favicon/android-icon-192x192.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="96x96" href="../favicon/favicon-96x96.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png">
-    <link rel="manifest" href="../favicon/manifest.json">
-    <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content="../favicon/ms-icon-144x144.png">
-    <meta name="theme-color" content="#ffffff">
+    <link
+      rel="apple-touch-icon"
+      sizes="57x57"
+      href="../favicon/apple-icon-57x57.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="60x60"
+      href="../favicon/apple-icon-60x60.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="72x72"
+      href="../favicon/apple-icon-72x72.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="76x76"
+      href="../favicon/apple-icon-76x76.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="114x114"
+      href="../favicon/apple-icon-114x114.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="120x120"
+      href="../favicon/apple-icon-120x120.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="144x144"
+      href="../favicon/apple-icon-144x144.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="152x152"
+      href="../favicon/apple-icon-152x152.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="../favicon/apple-icon-180x180.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="../favicon/android-icon-192x192.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="../favicon/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="96x96"
+      href="../favicon/favicon-96x96.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="../favicon/favicon-16x16.png"
+    />
+    <link rel="manifest" href="../favicon/manifest.json" />
+    <meta name="msapplication-TileColor" content="#ffffff" />
+    <meta
+      name="msapplication-TileImage"
+      content="../favicon/ms-icon-144x144.png"
+    />
+    <meta name="theme-color" content="#ffffff" />
     <link rel="stylesheet" href="../css/reset.css" />
     <link rel="stylesheet" href="../css/pricing.css" />
     <title>Bảng Giá</title>
@@ -48,9 +107,7 @@
             </ul>
           </nav>
           <div class="action">
-            <a href="../pages/auth.html" class="btn btn-sign-up"
-              >Sign Up</a
-            >
+            <a href="../pages/auth.html" class="btn btn-sign-up">Sign Up</a>
             <button class="btn btn-logout hidden" id="logoutBtn">
               Log Out
             </button>
@@ -81,9 +138,10 @@
               </ul>
               <button class="btn btn-select">
                 <a
-                  href="../pages/checkout.html"
+                  href="#"
                   class="choose-plan"
-                  data-plan="basic"
+                  data-plan-name="Cơ Bản"
+                  data-plan-price="517.500 VND/tháng"
                   >Chọn Gói</a
                 >
               </button>
@@ -100,9 +158,10 @@
               </ul>
               <button class="btn btn-select">
                 <a
-                  href="../pages/checkout.html"
+                  href="#"
                   class="choose-plan"
-                  data-plan="basic"
+                  data-plan-name="Nâng Cao"
+                  data-plan-price="1.271.687 VND/tháng"
                   >Chọn Gói</a
                 >
               </button>
@@ -119,9 +178,10 @@
               </ul>
               <button class="btn btn-select">
                 <a
-                  href="../pages/checkout.html"
+                  href="#"
                   class="choose-plan"
-                  data-plan="basic"
+                  data-plan-name="Cao Cấp"
+                  data-plan-price="2.507.749 VND/tháng"
                   >Chọn Gói</a
                 >
               </button>
@@ -222,6 +282,27 @@
         </div>
       </div>
     </footer>
+
+    <!-- Modal thanh toán -->
+    <div class="payment-modal hidden" id="paymentModal">
+      <div class="modal-content">
+        <span class="close-btn" id="closePaymentModal">&times;</span>
+        <h3>Thanh toán gói: <span id="selectedPlanName"></span></h3>
+        <p>Số tiền: <span id="selectedPlanPrice"></span></p>
+        <p>Vui lòng chọn phương thức thanh toán:</p>
+        <div class="payment-methods">
+          <button class="btn payment-btn" id="payWithMoMo">
+            Thanh toán qua MoMo
+          </button>
+          <button class="btn payment-btn" id="payWithVNPay">
+            Thanh toán qua VNPay
+          </button>
+        </div>
+        <button class="btn complete-btn hidden" id="completePayment">
+          Hoàn thành thanh toán
+        </button>
+      </div>
+    </div>
   </body>
   <script src="../js/pricing.js"></script>
 </html>
