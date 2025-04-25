@@ -95,12 +95,17 @@ function loadDashboardData() {
   let totalRevenue = 0;
   users.forEach((user) => {
     user.purchasedCourses?.forEach((course) => {
-      totalRevenue += parseInt(course.price);
+      const coursePrice = parseFloat(course.price); // Chuyển đổi giá sang số thực
+      if (!isNaN(coursePrice)) {
+        totalRevenue += coursePrice; // Chỉ cộng nếu giá trị hợp lệ
+      }
     });
   });
+
+  // Hiển thị tổng doanh thu
   document.getElementById(
     "totalRevenue"
-  ).textContent = `${totalRevenue.toLocaleString()}đ`;
+  ).textContent = `${totalRevenue.toLocaleString("vi-VN")}đ`;
 }
 
 // Tải dữ liệu bảng người dùng
@@ -109,7 +114,10 @@ function loadUserTable() {
   const table = document.getElementById("userTable");
   table.innerHTML = "";
 
-  if (users.length === 0) {
+  // Loc bo tai khoan admin
+  const filteredUsers = users.filter((user) => user.role !== "admin");
+
+  if (filteredUsers.length === 0) {
     // Hiển thị thông báo nếu không có người dùng
     const row = document.createElement("tr");
     row.innerHTML = `<td colspan="5" style="text-align: center;">Không có dữ liệu người dùng</td>`;
@@ -117,30 +125,17 @@ function loadUserTable() {
     return;
   }
 
-  // Lấy danh sách giá từ courses.html
-  const coursePrices = {};
-  document.querySelectorAll(".courses-card").forEach((card) => {
-    const courseName = card.querySelector("h3").textContent.trim();
-    const coursePrice = card.querySelector(".discounted-price")?.dataset.price;
-    if (courseName && coursePrice) {
-      coursePrices[courseName] = parseInt(coursePrice);
-    }
-
-    console.log(course.courseName, coursePrices[course.courseName]);
-  });
-
-  // Hiển thị danh sách người dùng và các khóa học đã mua
-  users.forEach((user) => {
+  // Hiển thị danh sách người dùng
+  filteredUsers.forEach((user) => {
     if (user.purchasedCourses?.length > 0) {
       user.purchasedCourses.forEach((course) => {
         const row = document.createElement("tr");
-        const coursePrice = coursePrices[course.courseName] || course.price; // Lấy giá từ courses.html hoặc giá mặc định
         row.innerHTML = `
           <td>${user.name || user.email}</td>
           <td>${user.email}</td>
           <td>${course.courseName}</td>
           <td>${new Date(course.purchaseDate).toLocaleDateString()}</td>
-          <td>${formatCurrency(coursePrice)}</td>
+          <td>${formatCurrency(course.price)}</td>
         `;
         table.appendChild(row);
       });
@@ -161,7 +156,7 @@ function loadUserTable() {
 
 // Định dạng số tiền theo kiểu Việt Nam
 function formatCurrency(amount) {
-  if (!amount) return "0đ";
+  if (!amount || isNaN(amount)) return "0đ";
   return parseInt(amount).toLocaleString("vi-VN") + "đ";
 }
 
@@ -241,3 +236,23 @@ document.addEventListener("click", function (e) {
     }
   }
 });
+
+// Kiểm tra và sửa dữ liệu courses
+const courses = JSON.parse(localStorage.getItem("courses")) || [];
+courses.forEach((course) => {
+  if (!course.price || isNaN(parseFloat(course.price))) {
+    course.price = 0; // Gán giá trị mặc định nếu không hợp lệ
+  }
+});
+localStorage.setItem("courses", JSON.stringify(courses));
+
+// Kiểm tra và sửa dữ liệu users
+const users = JSON.parse(localStorage.getItem("users")) || [];
+users.forEach((user) => {
+  user.purchasedCourses?.forEach((course) => {
+    if (!course.price || isNaN(parseFloat(course.price))) {
+      course.price = 0; // Gán giá trị mặc định nếu không hợp lệ
+    }
+  });
+});
+localStorage.setItem("users", JSON.stringify(users));

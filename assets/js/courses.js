@@ -233,4 +233,22 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
+document.addEventListener("DOMContentLoaded", function () {
+  const courses = [];
+  document.querySelectorAll(".courses-card").forEach((card) => {
+    const courseName = card.querySelector("h3").textContent.trim();
+    const coursePrice = card.querySelector(".discounted-price")?.dataset.price;
+    const instructor = card.querySelector(".instructor").textContent.trim();
 
+    if (courseName && coursePrice) {
+      courses.push({
+        name: courseName,
+        price: parseInt(coursePrice),
+        instructor: instructor,
+      });
+    }
+  });
+
+  // Lưu danh sách khóa học vào localStorage
+  localStorage.setItem("courses", JSON.stringify(courses));
+});

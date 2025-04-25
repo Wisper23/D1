@@ -603,7 +603,36 @@ h6 {
   color: var(--primary-color);
 }
 
-/* Responsive */
+/*================ Responsive ========================*/
+/* Hiển thị menu mặc định trên màn hình lớn */
+.nav ul {
+  display: flex; /* Hiển thị menu trên màn hình lớn */
+  gap: 3rem;
+  list-style: none;
+}
+
+/* Ẩn menu trên màn hình nhỏ */
+@media (max-width: 768px) {
+  .nav ul {
+    display: none; /* Ẩn menu trên màn hình nhỏ */
+    flex-direction: column;
+    gap: 10px;
+    background-color: #fff;
+    position: absolute;
+    top: 60px; /* Điều chỉnh theo chiều cao header */
+    right: 10px;
+    padding: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    z-index: 1000;
+  }
+
+  /* Hiển thị menu khi có class "active" */
+  .nav ul.active {
+    display: flex;
+  }
+}
+
 @media (max-width: 992px) {
   .about-grid {
     grid-template-columns: 1fr;
