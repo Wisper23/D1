@@ -89,6 +89,13 @@ body {
   margin-right: 10px;
 }
 
+.main-section {
+  display: none;
+}
+.main-section.active {
+  display: block;
+}
+
 /* Main Content */
 .main-content {
   flex: 1;

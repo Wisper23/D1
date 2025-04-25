@@ -90,13 +90,9 @@
   <body>
     <div class="admin-container">
       <!-- Sidebar -->
-      <div class="sidebar">
+      <aside class="sidebar">
         <div class="sidebar-header">
-          <img
-            src="../img/uniky.png"
-            alt="Admin Logo"
-            class="admin-logo"
-          />
+          <img src="../img/uniky.png" alt="Logo Admin" class="admin-logo" />
           <h2>Admin Dashboard</h2>
         </div>
         <ul class="sidebar-menu">
@@ -106,24 +102,16 @@
             >
           </li>
           <li>
-            <a href="#courses"
-              ><i class="fas fa-book" id="courses"></i> Quản lý khóa học</a
-            >
+            <a href="#courses"><i class="fas fa-book"></i> Quản lý khóa học</a>
           </li>
           <li>
-            <a href="#users"
-              ><i class="fas fa-users" id="users"></i> Quản lý người dùng</a
-            >
+            <a href="#users"><i class="fas fa-users"></i> Quản lý người dùng</a>
           </li>
           <li>
-            <a href="#reviews"
-              ><i class="fas fa-star" id="reviews"></i> Quản lý đánh giá</a
-            >
+            <a href="#reviews"><i class="fas fa-star"></i> Quản lý đánh giá</a>
           </li>
           <li>
-            <a href="#settings"
-              ><i class="fas fa-cog" id="settings"></i> Cài đặt</a
-            >
+            <a href="#settings"><i class="fas fa-cog"></i> Cài đặt</a>
           </li>
         </ul>
         <div class="sidebar-footer">
@@ -131,58 +119,46 @@
             ><i class="fas fa-sign-out-alt"></i> Đăng xuất</a
           >
         </div>
-      </div>
+      </aside>
 
       <!-- Main Content -->
-      <div class="main-content">
-        <!-- Top Navigation -->
+      <main class="main-content">
         <nav class="top-nav">
           <div class="search-box">
-            <input type="text" placeholder="Tìm kiếm..." />
+            <input type="text" id="searchInput" placeholder="Tìm kiếm..." />
             <button><i class="fas fa-search"></i></button>
           </div>
           <div class="admin-info">
-            <img src="../img/adminav.jpg" alt="anh dai dien của Admin" />
+            <img src="../img/adminav.jpg" alt="Ảnh đại diện Admin" />
             <span>Admin</span>
           </div>
         </nav>
 
-        <!-- Dashboard Content -->
-        <div class="content" id="dashboardContent">
+        <!-- Dashboard -->
+        <section class="content main-section active" id="dashboardContent">
           <h1>Dashboard</h1>
-
-          <!-- Thống kê -->
           <div class="stats-grid">
             <div class="stat-card">
-              <div class="stat-icon bg-blue">
-                <i class="fas fa-users"></i>
-              </div>
+              <div class="stat-icon bg-blue"><i class="fas fa-users"></i></div>
               <div class="stat-info">
                 <h3>Tổng người dùng</h3>
                 <p id="totalUsers">0</p>
               </div>
             </div>
-
             <div class="stat-card">
-              <div class="stat-icon bg-green">
-                <i class="fas fa-book"></i>
-              </div>
+              <div class="stat-icon bg-green"><i class="fas fa-book"></i></div>
               <div class="stat-info">
                 <h3>Tổng khóa học</h3>
                 <p id="totalCourses">0</p>
               </div>
             </div>
-
             <div class="stat-card">
-              <div class="stat-icon bg-orange">
-                <i class="fas fa-star"></i>
-              </div>
+              <div class="stat-icon bg-orange"><i class="fas fa-star"></i></div>
               <div class="stat-info">
                 <h3>Tổng đánh giá</h3>
                 <p id="totalReviews">0</p>
               </div>
             </div>
-
             <div class="stat-card">
               <div class="stat-icon bg-red">
                 <i class="fas fa-dollar-sign"></i>
@@ -192,43 +168,6 @@
                 <p id="totalRevenue">0đ</p>
               </div>
             </div>
-          </div>
-
-          <!-- Quản lý người dùng -->
-          <div class="user-management">
-            <h2>Quản lý người dùng</h2>
-            <table>
-              <thead>
-                <tr>
-                  <th>Tên</th>
-                  <th>Email</th>
-                  <th>Khóa học đã mua</th>
-                  <th>Thời gian mua</th>
-                  <th>Giá</th>
-                </tr>
-              </thead>
-              <tbody id="userTable">
-                <!-- Dữ liệu sẽ được thêm bằng JavaScript -->
-              </tbody>
-            </table>
-          </div>
-
-          <!-- Quản lý khóa học -->
-          <div class="course-management">
-            <h2>Quản lý khóa học</h2>
-            <table>
-              <thead>
-                <tr>
-                  <th>Tên khóa học</th>
-                  <th>Giá</th>
-                  <th>Giảng viên</th>
-                  <th>Hành động</th>
-                </tr>
-              </thead>
-              <tbody id="courseTable">
-                <!-- Dữ liệu sẽ được thêm bằng JavaScript -->
-              </tbody>
-            </table>
           </div>
 
           <!-- Hoạt động gần đây -->
@@ -243,14 +182,88 @@
                   <th>Chi tiết</th>
                 </tr>
               </thead>
-              <tbody id="activityTable">
-                <!-- Dữ liệu sẽ được thêm bằng JavaScript -->
-              </tbody>
+              <tbody id="activityTable"></tbody>
             </table>
           </div>
-        </div>
-      </div>
+        </section>
+
+        <!-- Quản lý khóa học -->
+        <section class="content main-section" id="coursesContent">
+          <h1>Quản lý khóa học</h1>
+          <table>
+            <thead>
+              <tr>
+                <th>Tên khóa học</th>
+                <th>Giá</th>
+                <th>Giảng viên</th>
+                <th>Hành động</th>
+              </tr>
+            </thead>
+            <tbody id="courseTable"></tbody>
+          </table>
+        </section>
+
+        <!-- Quản lý người dùng -->
+        <section class="content main-section" id="usersContent">
+          <h1>Quản lý người dùng</h1>
+          <table>
+            <thead>
+              <tr>
+                <th>Tên</th>
+                <th>Email</th>
+                <th>Khóa học đã mua</th>
+                <th>Thời gian mua</th>
+                <th>Giá</th>
+              </tr>
+            </thead>
+            <tbody id="userTable"></tbody>
+          </table>
+        </section>
+
+        <!-- Quản lý đánh giá -->
+        <section class="content main-section" id="reviewsContent">
+          <h1>Quản lý đánh giá</h1>
+          <div id="reviewsList" class="reviews-list">
+            <!-- Các đánh giá sẽ được thêm vào đây -->
+          </div>
+        </section>
+
+        <!-- Cài đặt -->
+        <section class="content main-section" id="settingsContent">
+          <h1>Cài đặt</h1>
+          <p>Quản lý cài đặt của trang sẽ được hiển thị ở đây.</p>
+        </section>
+      </main>
     </div>
+
+    <script src="../js/admin1.js"></script>
     <script src="../js/admin.js"></script>
+    <!-- <script src="../js/courses1.js"></script> -->
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const links = document.querySelectorAll(".sidebar-menu a");
+        const sections = document.querySelectorAll(".main-section");
+
+        links.forEach((link) => {
+          link.addEventListener("click", (e) => {
+            e.preventDefault();
+
+            const targetId = link.getAttribute("href").substring(1) + "Content";
+
+            sections.forEach((section) => section.classList.remove("active"));
+
+            const targetSection = document.getElementById(targetId);
+            if (targetSection) {
+              targetSection.classList.add("active");
+            }
+
+            links.forEach((link) =>
+              link.parentElement.classList.remove("active")
+            );
+            link.parentElement.classList.add("active");
+          });
+        });
+      });
+    </script>
   </body>
 </html>

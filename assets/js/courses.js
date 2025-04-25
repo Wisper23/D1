@@ -142,6 +142,22 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
 
+    // Tạo đối tượng đánh giá
+    const review = {
+      courseName: currentCourseName,
+      stars: stars,
+      comment: comment,
+    };
+
+    // Lấy các đánh giá đã lưu trong localStorage
+    let reviews = JSON.parse(localStorage.getItem("reviews")) || [];
+
+    // Thêm đánh giá mới vào mảng
+    reviews.push(review);
+
+    // Lưu lại mảng đánh giá vào localStorage
+    localStorage.setItem("reviews", JSON.stringify(reviews));
+
     // Tạo phần tử đánh giá mới
     const reviewItem = document.createElement("div");
     reviewItem.classList.add("review-item");
@@ -153,6 +169,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Thêm đánh giá vào danh sách
     reviewsList.appendChild(reviewItem);
+
+    // Cập nhật lại tổng đánh giá trong admin dashboard
+    const totalReviews = document.getElementById("totalReviews");
+    totalReviews.textContent = reviews.length; // Cập nhật tổng số đánh giá
 
     // Đóng modal và reset form
     modal.classList.add("hidden");

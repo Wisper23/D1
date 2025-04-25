@@ -82,14 +82,12 @@ function populateTable(tableId, data, rowTemplate) {
 function loadDashboardData() {
   const users = JSON.parse(localStorage.getItem("users")) || [];
   const courses = JSON.parse(localStorage.getItem("courses")) || [];
-  const activities = JSON.parse(localStorage.getItem("activities")) || [];
+  const reviews = JSON.parse(localStorage.getItem("reviews")) || [];
 
   // Hiển thị tổng số người dùng, khóa học và đánh giá
   document.getElementById("totalUsers").textContent = users.length;
   document.getElementById("totalCourses").textContent = courses.length;
-  document.getElementById("totalReviews").textContent = activities.filter(
-    (activity) => activity.action === "Đánh giá"
-  ).length;
+  document.getElementById("totalReviews").textContent = reviews.length; // Cập nhật tổng số đánh giá
 
   // Tính tổng doanh thu
   let totalRevenue = 0;
@@ -112,9 +110,9 @@ function loadDashboardData() {
 function loadUserTable() {
   const users = JSON.parse(localStorage.getItem("users")) || [];
   const table = document.getElementById("userTable");
-  table.innerHTML = "";
+  table.innerHTML = ""; // Reset bảng mỗi lần gọi
 
-  // Loc bo tai khoan admin
+  // Lọc bỏ tài khoản admin
   const filteredUsers = users.filter((user) => user.role !== "admin");
 
   if (filteredUsers.length === 0) {
@@ -127,7 +125,7 @@ function loadUserTable() {
 
   // Hiển thị danh sách người dùng
   filteredUsers.forEach((user) => {
-    if (user.purchasedCourses?.length > 0) {
+    if (user.purchasedCourses && user.purchasedCourses.length > 0) {
       user.purchasedCourses.forEach((course) => {
         const row = document.createElement("tr");
         row.innerHTML = `
@@ -167,7 +165,7 @@ function loadCourseTable() {
     "courseTable",
     courses,
     (course) => `
-      <td>${course.name}</td>
+      <td>${course.title}</td>
       <td>${course.price.toLocaleString()}đ</td>
       <td>${course.instructor}</td>
       <td>
@@ -221,7 +219,7 @@ document.addEventListener("click", function (e) {
 document.addEventListener("click", function (e) {
   if (e.target.classList.contains("btn-edit")) {
     const courseId = e.target.getAttribute("data-id");
-    const courses = JSON.parse(localStorage.getItem("courses")) || [];
+    // const courses = JSON.parse(localStorage.getItem("courses")) || [];
     const course = courses.find((course) => course.id === parseInt(courseId));
 
     if (course) {
@@ -238,7 +236,7 @@ document.addEventListener("click", function (e) {
 });
 
 // Kiểm tra và sửa dữ liệu courses
-const courses = JSON.parse(localStorage.getItem("courses")) || [];
+let courses = JSON.parse(localStorage.getItem("courses")) || [];
 courses.forEach((course) => {
   if (!course.price || isNaN(parseFloat(course.price))) {
     course.price = 0; // Gán giá trị mặc định nếu không hợp lệ
@@ -256,3 +254,21 @@ users.forEach((user) => {
   });
 });
 localStorage.setItem("users", JSON.stringify(users));
+
+document.addEventListener("DOMContentLoaded", () => {
+  const courses = JSON.parse(localStorage.getItem("courses")) || [];
+  const tableBody = document.querySelector("#course-table tbody");
+
+  if (courses && tableBody) {
+    courses.forEach((course, index) => {
+      const row = document.createElement("tr");
+      row.innerHTML = `
+        <td>${index + 1}</td>
+        <td>${course.title}</td>
+        <td>${course.price}</td>
+        <td>${course.instructor}</td>
+      `;
+      tableBody.appendChild(row);
+    });
+  }
+});
