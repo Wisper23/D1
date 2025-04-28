@@ -12,7 +12,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // Serve static files (HTML, CSS, JS, Images...)
-app.use(express.static(path.join(__dirname, "index" , "assets")));
+app.use(express.static(path.join(__dirname, "assets")));
 
 // API giả lập: Xử lý gửi form liên hệ
 app.post("/api/contact", (req, res) => {
@@ -26,6 +26,11 @@ app.post("/api/subscribe", (req, res) => {
   const { email } = req.body;
   console.log("New subscription:", { email });
   res.json({ status: "success", message: "Đăng ký nhận tin thành công!" });
+});
+
+// Serve index.html khi truy cập vào root URL
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "index.html"));
 });
 
 // Chạy server

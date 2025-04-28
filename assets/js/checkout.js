@@ -147,7 +147,7 @@ function createDownloadPage(downloadUrl, fileName) {
     <p>Cảm ơn bạn đã mua khóa học. Tài liệu đã sẵn sàng để tải về:</p>
     <a class="btn" href="${downloadUrl}" download="${fileName}">📥 Tải ${fileName}</a><br/>
     <br/>
-    <a href="/assets/pages/courses.html">← Quay về khóa học</a>
+    <a href="../pages/courses.html">← Quay về khóa học</a>
   </div>
 </body>
 </html>
