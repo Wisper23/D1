@@ -93,7 +93,9 @@ function loadDashboardData() {
   let totalRevenue = 0;
   users.forEach((user) => {
     user.purchasedCourses?.forEach((course) => {
-      const coursePrice = parseFloat(course.price); // Chuyển đổi giá sang số thực
+      const coursePrice = parseFloat(
+        course.price.toString().replace(/[^\d.-]/g, "")
+      ); // Chuyển đổi giá sang số thực
       if (!isNaN(coursePrice)) {
         totalRevenue += coursePrice; // Chỉ cộng nếu giá trị hợp lệ
       }
@@ -103,7 +105,7 @@ function loadDashboardData() {
   // Hiển thị tổng doanh thu
   document.getElementById(
     "totalRevenue"
-  ).textContent = `${totalRevenue.toLocaleString("vi-VN")}đ`;
+  ).textContent = `${Math.round(totalRevenue).toLocaleString("vi-VN")}đ`;
 }
 
 // Tải dữ liệu bảng người dùng
@@ -160,7 +162,7 @@ function formatCurrency(amount) {
 
 // Tải dữ liệu bảng khóa học
 function loadCourseTable() {
-  const courses = JSON.parse(localStorage.getItem("courses")) || [];
+  const courses = JSON.parse(localStorage.getItem("courses1")) || [];
   populateTable(
     "courseTable",
     courses,
