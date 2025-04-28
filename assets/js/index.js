@@ -1,3 +1,8 @@
+// Reset trạng thái đăng nhập mỗi khi mở lại trang (tùy chọn)
+localStorage.removeItem("loggedIn");
+localStorage.removeItem("userEmail");
+localStorage.removeItem("userRole");
+
 // Chờ toàn bộ DOM được tải xong
 document.addEventListener("DOMContentLoaded", function () {
   // Lấy các phần tử nút
