@@ -162,7 +162,7 @@ function formatCurrency(amount) {
 
 // Tải dữ liệu bảng khóa học
 function loadCourseTable() {
-  const courses = JSON.parse(localStorage.getItem("courses1")) || [];
+  const courses = JSON.parse(localStorage.getItem("courses")) || [];
   populateTable(
     "courseTable",
     courses,
