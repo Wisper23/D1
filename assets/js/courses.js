@@ -1,7 +1,4 @@
-// Reset trạng thái đăng nhập mỗi khi mở lại trang (tùy chọn)
-localStorage.removeItem("loggedIn");
-localStorage.removeItem("userEmail");
-localStorage.removeItem("userRole");
+
 
 // Hiệu ứng scroll mượt cho menu
 const menuLinks = document.querySelectorAll("nav a");
