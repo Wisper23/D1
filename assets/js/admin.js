@@ -79,6 +79,7 @@ function populateTable(tableId, data, rowTemplate) {
 }
 
 // Tải dữ liệu tổng quan cho dashboard
+// Tải dữ liệu tổng quan cho dashboard
 function loadDashboardData() {
   const users = JSON.parse(localStorage.getItem("users")) || [];
   const courses = JSON.parse(localStorage.getItem("courses")) || [];
@@ -87,35 +88,81 @@ function loadDashboardData() {
   // Hiển thị tổng số người dùng, khóa học và đánh giá
   document.getElementById("totalUsers").textContent = users.length;
   document.getElementById("totalCourses").textContent = courses.length;
-  document.getElementById("totalReviews").textContent = reviews.length; // Cập nhật tổng số đánh giá
+  document.getElementById("totalReviews").textContent = reviews.length;
 
-  // Tính tổng doanh thu
+  // Tính tổng doanh thu từ các khóa học đã mua
   let totalRevenue = 0;
+
   users.forEach((user) => {
-    user.purchasedCourses?.forEach((course) => {
-      const coursePrice = parseFloat(
-        course.price.toString().replace(/[^\d.-]/g, "")
-      ); // Chuyển đổi giá sang số thực
-      if (!isNaN(coursePrice)) {
-        totalRevenue += coursePrice; // Chỉ cộng nếu giá trị hợp lệ
-      }
-    });
+    if (user.purchasedCourses && Array.isArray(user.purchasedCourses)) {
+      user.purchasedCourses.forEach((purchasedCourse) => {
+        // Tìm khóa học tương ứng trong danh sách courses
+        const course = courses.find(
+          (c) =>
+            c.id === purchasedCourse.id ||
+            c.title === purchasedCourse.courseName
+        );
+
+        if (course) {
+          // Chuyển đổi giá từ chuỗi định dạng "1.800.000đ" sang số
+          const priceString = course.price.toString();
+          const priceNumber = parseFloat(priceString.replace(/[^\d]/g, ""));
+
+          if (!isNaN(priceNumber)) {
+            totalRevenue += priceNumber;
+          }
+        }
+      });
+    }
   });
 
-  // Hiển thị tổng doanh thu
-  document.getElementById(
-    "totalRevenue"
-  ).textContent = `${Math.round(totalRevenue).toLocaleString("vi-VN")}đ`;
+  // Hiển thị tổng doanh thu đã định dạng
+  document.getElementById("totalRevenue").textContent =
+    formatCurrency(totalRevenue);
 }
 
+// Hàm chuẩn hóa giá từ chuỗi định dạng tiền tệ
+function normalizePrice(price) {
+  if (typeof price === "number") return price;
+  if (typeof price === "string") {
+    const numericValue = parseFloat(price.replace(/[^\d]/g, ""));
+    return isNaN(numericValue) ? 0 : numericValue;
+  }
+  return 0;
+}
+
+// Hàm định dạng tiền tệ
+function formatCurrency(amount) {
+  return new Intl.NumberFormat("vi-VN", {
+    style: "currency",
+    currency: "VND",
+  })
+    .format(amount)
+    .replace("₫", "đ");
+}
+
+// Tải dữ liệu bảng người dùng
 // Tải dữ liệu bảng người dùng
 function loadUserTable() {
   const users = JSON.parse(localStorage.getItem("users")) || [];
   const table = document.getElementById("userTable");
   table.innerHTML = ""; // Reset bảng mỗi lần gọi
 
-  // Lọc bỏ tài khoản admin
-  const filteredUsers = users.filter((user) => user.role !== "admin");
+  // Tạo header cho bảng
+  const headerRow = document.createElement("tr");
+  headerRow.innerHTML = `
+    <th>Tên</th>
+    <th>Email</th>
+    <th>Khóa học đã mua</th>
+    <th>Ngày mua</th>
+    <th>Giá</th>
+  `;
+  table.appendChild(headerRow);
+
+  // Lọc bỏ tài khoản admin (cả theo role và email)
+  const filteredUsers = users.filter((user) => {
+    return user.role !== "admin" && !user.email.includes("admin@");
+  });
 
   if (filteredUsers.length === 0) {
     // Hiển thị thông báo nếu không có người dùng
@@ -135,7 +182,7 @@ function loadUserTable() {
           <td>${user.email}</td>
           <td>${course.courseName}</td>
           <td>${new Date(course.purchaseDate).toLocaleDateString()}</td>
-          <td>${formatCurrency(course.price)}</td>
+          <td>${formatCurrency(normalizePrice(course.price))}</td>
         `;
         table.appendChild(row);
       });
@@ -154,6 +201,8 @@ function loadUserTable() {
   });
 }
 
+console.log("Tổng doanh thu tạm tính:", totalRevenue);
+
 // Định dạng số tiền theo kiểu Việt Nam
 function formatCurrency(amount) {
   if (!amount || isNaN(amount)) return "0đ";
@@ -163,11 +212,16 @@ function formatCurrency(amount) {
 // Tải dữ liệu bảng khóa học
 function loadCourseTable() {
   const courses = JSON.parse(localStorage.getItem("courses")) || [];
+  console.log(
+    "Dữ liệu courses từ localStorage:",
+    JSON.parse(localStorage.getItem("courses"))
+  );
+  console.log("Phần tử bảng:", document.getElementById("courseTable"));
   populateTable(
     "courseTable",
     courses,
     (course) => `
-      <td>${course.title}</td>
+      <td>${course.name || course.title || "chua co ten"}</td>
       <td>${course.price.toLocaleString()}đ</td>
       <td>${course.instructor}</td>
       <td>
@@ -257,20 +311,203 @@ users.forEach((user) => {
 });
 localStorage.setItem("users", JSON.stringify(users));
 
-document.addEventListener("DOMContentLoaded", () => {
-  const courses = JSON.parse(localStorage.getItem("courses")) || [];
-  const tableBody = document.querySelector("#course-table tbody");
+/**
+ * ADMIN DASHBOARD - QUẢN LÝ ĐÁNH GIÁ & TÌM KIẾM
+ * Phiên bản cải tiến với:
+ * 1. Quản lý đánh giá từ localStorage
+ * 2. Tìm kiếm thông minh theo từng section
+ * 3. Xử lý lỗi và thông báo rõ ràng
+ */
 
-  if (courses && tableBody) {
-    courses.forEach((course, index) => {
-      const row = document.createElement("tr");
-      row.innerHTML = `
-        <td>${index + 1}</td>
-        <td>${course.title}</td>
-        <td>${course.price}</td>
-        <td>${course.instructor}</td>
-      `;
-      tableBody.appendChild(row);
+document.addEventListener("DOMContentLoaded", function () {
+  // ========== PHẦN 1: QUẢN LÝ ĐÁNH GIÁ ==========
+  const reviewsList = document.getElementById("reviewsList");
+  const totalReviewsElement = document.getElementById("totalReviews");
+
+  // Hàm hiển thị đánh giá
+  function renderReviews(reviewsData) {
+    if (!reviewsList) return;
+
+    reviewsList.innerHTML = "";
+
+    if (reviewsData && reviewsData.length > 0) {
+      reviewsData.forEach((review) => {
+        const reviewItem = document.createElement("div");
+        reviewItem.className = "review-item";
+        reviewItem.innerHTML = `
+          <h4>${review.courseName || "Không có tên khóa học"}</h4>
+          <div class="stars">${"★".repeat(review.stars)}${"☆".repeat(
+          5 - review.stars
+        )}</div>
+          <p class="review-comment">${review.comment || "Không có nhận xét"}</p>
+          <small>${review.userEmail || "Ẩn danh"} - ${new Date(
+          review.date
+        ).toLocaleDateString("vi-VN")}</small>
+        `;
+        reviewsList.appendChild(reviewItem);
+      });
+    } else {
+      reviewsList.innerHTML = '<p class="no-reviews">Chưa có đánh giá nào</p>';
+    }
+
+    if (totalReviewsElement) {
+      totalReviewsElement.textContent = reviewsData ? reviewsData.length : 0;
+    }
+  }
+
+  // Lấy và hiển thị đánh giá ban đầu
+  const initialReviews = JSON.parse(localStorage.getItem("reviews")) || [];
+  renderReviews(initialReviews);
+
+  // ========== PHẦN 2: TÌM KIẾM THÔNG MINH ==========
+  const searchInput = document.getElementById("searchInput");
+
+  if (searchInput) {
+    searchInput.addEventListener("input", function () {
+      const keyword = this.value.trim().toLowerCase();
+      const activeSection = getActiveSection();
+
+      if (!activeSection) return;
+
+      switch (activeSection.id) {
+        case "dashboardContent":
+          searchActivityTable(keyword);
+          break;
+        case "coursesContent":
+          searchTable("courseTable", keyword, [0, 2]); // Tìm theo cột Tên và Giảng viên
+          break;
+        case "usersContent":
+          searchTable("userTable", keyword, [0, 1, 2]); // Tìm theo Tên, Email, Khóa học
+          break;
+        case "reviewsContent":
+          searchReviews(keyword);
+          break;
+        default:
+          console.log("Section không hỗ trợ tìm kiếm");
+      }
     });
   }
+
+  // Hàm xác định section đang active
+  function getActiveSection() {
+    return (
+      document.querySelector(".main-section[style='display: block;']") ||
+      document.querySelector(".main-section.active")
+    );
+  }
+
+  // Hàm tìm kiếm trong bảng hoạt động
+  function searchActivityTable(keyword) {
+    const table = document.getElementById("activityTable");
+    if (!table) return;
+
+    let hasResults = false;
+    const rows = table.querySelectorAll("tr");
+
+    rows.forEach((row) => {
+      if (row.querySelector("th")) return; // Bỏ qua header
+
+      const cells = row.querySelectorAll("td");
+      let isVisible = false;
+
+      cells.forEach((cell, index) => {
+        if (index < 4 && cell.textContent.toLowerCase().includes(keyword)) {
+          isVisible = true;
+        }
+      });
+
+      row.style.display = isVisible ? "" : "none";
+      if (isVisible) hasResults = true;
+    });
+
+    showNoResults(hasResults, table);
+  }
+
+  // Hàm tìm kiếm trong các bảng (courses/users)
+  function searchTable(tableId, keyword, searchColumns) {
+    const table = document.getElementById(tableId);
+    if (!table) return;
+
+    let hasResults = false;
+    const rows = table.querySelectorAll("tr");
+
+    rows.forEach((row) => {
+      if (row.querySelector("th")) return; // Bỏ qua header
+
+      const cells = row.querySelectorAll("td");
+      let isVisible = false;
+
+      searchColumns.forEach((colIndex) => {
+        if (
+          cells[colIndex] &&
+          cells[colIndex].textContent.toLowerCase().includes(keyword)
+        ) {
+          isVisible = true;
+        }
+      });
+
+      row.style.display = isVisible ? "" : "none";
+      if (isVisible) hasResults = true;
+    });
+
+    showNoResults(hasResults, table);
+  }
+
+  // Hàm tìm kiếm trong phần đánh giá
+  function searchReviews(keyword) {
+    if (!reviewsList) return;
+
+    let hasResults = false;
+    const reviews = reviewsList.querySelectorAll(".review-item");
+
+    reviews.forEach((review) => {
+      const courseName =
+        review.querySelector("h4")?.textContent.toLowerCase() || "";
+      const comment =
+        review.querySelector(".review-comment")?.textContent.toLowerCase() ||
+        "";
+      const userEmail =
+        review.querySelector("small")?.textContent.toLowerCase() || "";
+
+      const isVisible =
+        courseName.includes(keyword) ||
+        comment.includes(keyword) ||
+        userEmail.includes(keyword);
+
+      review.style.display = isVisible ? "" : "none";
+      if (isVisible) hasResults = true;
+    });
+
+    showNoResults(hasResults, reviewsList);
+  }
+
+  // Hiển thị thông báo khi không có kết quả
+  function showNoResults(hasResults, container) {
+    const existingMsg = container.querySelector(".no-results");
+    if (existingMsg) existingMsg.remove();
+
+    if (!hasResults) {
+      const message = document.createElement("div");
+      message.className = "no-results";
+      message.textContent = "Không tìm thấy kết quả phù hợp";
+
+      if (container.tagName === "TABLE") {
+        const row = document.createElement("tr");
+        const cell = document.createElement("td");
+        cell.colSpan = 10;
+        cell.appendChild(message);
+        row.appendChild(cell);
+        container.querySelector("tbody")?.appendChild(row);
+      } else {
+        container.appendChild(message);
+      }
+    }
+  }
+
+  // ========== PHẦN 3: THEO DÕI THAY ĐỔI DỮ LIỆU ==========
+  window.addEventListener("storage", function (e) {
+    if (e.key === "reviews") {
+      renderReviews(JSON.parse(e.newValue));
+    }
+  });
 });

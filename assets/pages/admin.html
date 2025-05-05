@@ -206,7 +206,7 @@
         <!-- Quản lý người dùng -->
         <section class="content main-section" id="usersContent">
           <h1>Quản lý người dùng</h1>
-          <table>
+          <table id="userTable">
             <thead>
               <tr>
                 <th>Tên</th>
@@ -216,7 +216,7 @@
                 <th>Giá</th>
               </tr>
             </thead>
-            <tbody id="userTable"></tbody>
+            <tbody id="userTableBody"></tbody>
           </table>
         </section>
 
@@ -236,8 +236,8 @@
       </main>
     </div>
 
-    <script src="../js/admin1.js"></script>
     <script src="../js/admin.js"></script>
+
     <!-- <script src="../js/courses1.js"></script> -->
     <script>
       document.addEventListener("DOMContentLoaded", () => {

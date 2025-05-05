@@ -1,5 +1,3 @@
-
-
 // Hiệu ứng scroll mượt cho menu
 const menuLinks = document.querySelectorAll("nav a");
 menuLinks.forEach((anchor) => {
@@ -106,6 +104,7 @@ document.head.appendChild(style);
 // Mở modal khi bấm nút đánh giá
 document.addEventListener("DOMContentLoaded", function () {
   // Lấy các phần tử cần thiết
+  const isLoggedIn = localStorage.getItem("loggedIn") === "true";
   const reviewButtons = document.querySelectorAll(".btn.review-btn");
   const modal = document.getElementById("reviewModal");
   const closeModal = document.getElementById("closeModal");
@@ -134,10 +133,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Xử lý sự kiện gửi đánh giá
   submitReview.addEventListener("click", function () {
+    const userName = localStorage.getItem("userName") || "Khach"; // Lấy tên người dùng từ localStorage
     const stars = parseInt(starInput.value, 10);
     const comment = commentInput.value.trim();
 
+    if (!isLoggedIn) {
+      alert("Vui lòng đăng nhập để gửi đánh giá!");
+      window.location.href = "../pages/auth.html";
+      return;
+    }
+
     // Kiểm tra giá trị hợp lệ
+    console.log("Stars:", stars, "Comment:", comment);
     if (!stars || stars < 1 || stars > 5 || !comment) {
       alert("Vui lòng nhập số sao từ 1 đến 5 và viết bình luận.");
       console.log(!stars, !comment);
@@ -147,9 +154,20 @@ document.addEventListener("DOMContentLoaded", function () {
     // Tạo đối tượng đánh giá
     const review = {
       courseName: currentCourseName,
+      userName: userName,
       stars: stars,
       comment: comment,
+      timestamp: new Date().toISOString(),
     };
+
+    // Hiển thị tên người dùng nếu đã đăng nhập
+    const userInfo = document.getElementById("userInfo");
+    const displayName = document.getElementById("displayUserName");
+
+    if (isLoggedIn && userName !== "Khách") {
+      userInfo.classList.remove("hidden");
+      displayName.textContent = userName;
+    }
 
     // Lấy các đánh giá đã lưu trong localStorage
     let reviews = JSON.parse(localStorage.getItem("reviews")) || [];
@@ -174,7 +192,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Cập nhật lại tổng đánh giá trong admin dashboard
     const totalReviews = document.getElementById("totalReviews");
-    totalReviews.textContent = reviews.length; // Cập nhật tổng số đánh giá
+    if (totalReviews) {
+      totalReviews.textContent = reviews.length;
+    } else {
+      console.warn("Không tìm thấy phần tử #totalReviews");
+    }
 
     // Đóng modal và reset form
     modal.classList.add("hidden");
@@ -194,7 +216,6 @@ document.addEventListener("DOMContentLoaded", function () {
   // Kiểm tra trạng thái đăng nhập
   const loginBtn = document.getElementById("loginBtn");
   const logoutBtn = document.getElementById("logoutBtn");
-  const isLoggedIn = localStorage.getItem("loggedIn") === "true";
 
   if (isLoggedIn) {
     loginBtn.classList.add("hidden");
@@ -207,7 +228,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // Xử lý sự kiện đăng xuất
   logoutBtn.addEventListener("click", function () {
     localStorage.removeItem("loggedIn");
-    localStorage.removeItem("userEmail");
+    localStorage.removeItem("userName");
     window.location.href = "./auth.html";
   });
 
@@ -260,7 +281,12 @@ document.addEventListener("DOMContentLoaded", function () {
   document.querySelectorAll(".courses-card").forEach((card) => {
     const courseName = card.querySelector("h3").textContent.trim();
     const coursePrice = card.querySelector(".discounted-price")?.dataset.price;
-    const instructor = card.querySelector(".instructor").textContent.trim();
+    // Sửa tại đây - kiểm tra cả 2 class có thể có
+    const instructorElement =
+      card.querySelector(".instructor") || card.querySelector(".name-teacher");
+    const instructor = instructorElement
+      ? instructorElement.textContent.trim()
+      : "Không rõ giảng viên";
 
     if (courseName && coursePrice) {
       courses.push({
